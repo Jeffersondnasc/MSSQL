@@ -16,14 +16,16 @@ ALTER PROCEDURE [dbo].[PROC_EXECUTA_CURSOR]
 AS
 BEGIN
 
-		DECLARE @DATA datetime
+		DECLARE @DATA DATETIME,
+		DECLARE @registro1 INT, 
+		DECLARE @registro2 INT
 
 		DECLARE CursorGeral CURSOR FOR
 
-				Select registro1, registro2 FRom TABELA_A  TA
+				Select TA.registro1, TB.registro2 FRom TABELA_A  TA
 				inner join TABELA_B TB on TB.ID_TABELA_A = TA.ID 
-				where ACTIVE = 1
-				and DT_INICIO >= @DATA
+				where TA.ACTIVE = 1
+				and TB.DT_INICIO >= @DATA
 
 
 	OPEN CursorGeral
